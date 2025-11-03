@@ -10,7 +10,7 @@ import {
 import { formatIDR } from "@/lib/formatIDR";
 
 const ServicesTable = () => (
-  <Card className="p-5 mx-6">
+  <Card className="mx-6">
     <Table>
       <TableHeader>
         <TableRow>

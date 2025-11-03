@@ -5,7 +5,7 @@ const InvoiceSummaryCard = () => (
     <div className="flex flex-col gap-1">
       <div className="flex items-center justify-between">
         <p className="body-small-reguler">Total Harga : </p>
-        <p className="body-small-reguler">Rp 0</p>
+        <p className="body-small-reguler">Rp 3.047.000</p>
       </div>
       <div className="flex items-center justify-between">
         <p className="body-small-reguler">Total Pajak :</p>
@@ -18,7 +18,7 @@ const InvoiceSummaryCard = () => (
     </div>
     <div className="flex items-center justify-between">
       <p className="body-large-bold">Total Tagihan :</p>
-      <p className="body-large-bold">Rp 0</p>
+      <p className="body-large-bold">Rp 3.047.000</p>
     </div>
   </Card>
 );

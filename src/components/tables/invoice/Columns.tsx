@@ -1,6 +1,6 @@
 "use client";
 
-import { Badge, badgeVariants } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -9,11 +9,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { mapStatusToVariant } from "@/data/invoice";
 import { formatDateWithTimeID } from "@/lib/formatDate";
 import { formatIDR } from "@/lib/formatIDR";
-import { TypeInvoice, TypeStatusInvoice } from "@/types/invoice";
+import { TypeInvoice } from "@/types/invoice";
 import { ColumnDef } from "@tanstack/react-table";
-import { VariantProps } from "class-variance-authority";
 import { Eye, FileText, MoreHorizontalIcon, Pen, XCircle } from "lucide-react";
 import Link from "next/link";
 
@@ -36,24 +36,10 @@ export const columnsInvoice: ColumnDef<TypeInvoice>[] = [
     accessorKey: "statusInvoice",
     header: "Status",
     cell: ({ row }) => {
-      const status = row.original.statusInvoice;
-
-      type BadgeVariant = VariantProps<typeof badgeVariants>["variant"];
-
-      const variantMap: Record<TypeStatusInvoice, BadgeVariant> = {
-        Draft: "draft",
-        "Pending Approval": "pending",
-        "Need Revision": "revision",
-        Open: "open",
-        "Sent to Customer": "sent",
-        "Partially paid": "partially",
-        Paid: "paid",
-        Cancelled: "cancel",
-      };
-
-      const variant = variantMap[status] ?? "default";
-
-      return <Badge variant={variant}>{status}</Badge>;
+      const status = row.getValue(
+        "statusInvoice"
+      ) as TypeInvoice["statusInvoice"];
+      return <Badge variant={mapStatusToVariant(status)}>{status}</Badge>;
     },
   },
   {

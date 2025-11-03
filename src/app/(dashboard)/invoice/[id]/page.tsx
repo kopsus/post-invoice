@@ -1,39 +1,24 @@
-import InvoiceInfoCard from "@/components/invoiceDetail/InvoiceInfoCard";
-import CustomerInfoCard from "@/components/invoiceDetail/CustomerInfoCard";
-import ServicesTable from "@/components/invoiceDetail/ServicesTable";
-import PaymentDetailsCard from "@/components/invoiceDetail/PaymentDetailsCard";
-import InvoiceSummaryCard from "@/components/invoiceDetail/InvoiceSummaryCard";
-import SignatureStatusCard from "@/components/invoiceDetail/SignatureStatusCard";
-import RecentActivity from "@/components/invoiceDetail/RecentActivity";
-import { Button } from "@/components/ui/button";
-import PageHeader3 from "@/components/layout/PageHeader3";
+import DetailInvoiceClient from "@/components/invoiceDetail/DetailInvoiceClient";
+import { getDataInvoice } from "@/data/invoice";
+import { notFound } from "next/navigation";
 
-const DetailInvoice = () => {
-  return (
-    <div className="flex flex-col gap-6">
-      <PageHeader3 title="09289/KCUBD/102025" status="Pending Approval">
-        <Button variant={"outline"}>Lihat PDF</Button>
-        <Button variant={"outline"}>Batalkan</Button>
-        <Button variant={"outline"}>Ubah</Button>
-      </PageHeader3>
+async function getInvoiceById(id: string) {
+  const allInvoices = await getDataInvoice();
+  const invoice = allInvoices.find((inv) => inv.invoice === id);
+  return invoice;
+}
 
-      <InvoiceInfoCard />
+export default async function DetailInvoicePage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const invoice = await getInvoiceById(id);
 
-      <CustomerInfoCard />
+  if (!invoice) {
+    notFound();
+  }
 
-      <ServicesTable />
-
-      <div className="grid grid-cols-2 items-start mx-6 gap-5">
-        <PaymentDetailsCard />
-        <div className="flex flex-col gap-6">
-          <InvoiceSummaryCard />
-          <SignatureStatusCard />
-        </div>
-      </div>
-
-      <RecentActivity />
-    </div>
-  );
-};
-
-export default DetailInvoice;
+  return <DetailInvoiceClient invoice={invoice} />;
+}

@@ -1,5 +1,28 @@
 import { TypeInvoice } from "@/types/invoice";
 
+export const mapStatusToVariant = (status: TypeInvoice["statusInvoice"]) => {
+  switch (status) {
+    case "Draft":
+      return "draft";
+    case "Pending Approval":
+      return "pending";
+    case "Need Revision":
+      return "revision";
+    case "Open":
+      return "open";
+    case "Sent to Customer":
+      return "sent";
+    case "Partially paid":
+      return "partially";
+    case "Paid":
+      return "paid";
+    case "Cancelled":
+      return "cancel";
+    default:
+      return "default";
+  }
+};
+
 export async function getDataInvoice(): Promise<TypeInvoice[]> {
   return [
     {
