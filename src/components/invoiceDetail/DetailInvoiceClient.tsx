@@ -23,6 +23,7 @@ import InvoiceSummaryCard from "./InvoiceSummaryCard";
 import SignatureStatusCard from "./SignatureStatusCard";
 import RecentActivity from "./RecentActivity";
 import ServicesTable from "./ServicesTable";
+import { pdf } from "@react-pdf/renderer";
 
 const PDFViewer = dynamic(
   () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
@@ -39,6 +40,12 @@ interface IDetailInvoice {
 const DetailInvoice = ({ invoice }: IDetailInvoice) => {
   const [showPdf, setShowPdf] = useState(false);
 
+  const handleOpenPdf = async () => {
+    const blob = await pdf(<InvoicePDFTemplate />).toBlob();
+    const url = URL.createObjectURL(blob);
+    window.open(url, "_blank");
+  };
+
   return (
     <div className="flex flex-col gap-6">
       <PageHeader3 title={invoice.invoice} status={invoice.statusInvoice}>
@@ -51,10 +58,12 @@ const DetailInvoice = ({ invoice }: IDetailInvoice) => {
             <DialogHeader className="p-6 pb-2 flex-row items-center justify-between border-b">
               <DialogTitle>Preview Invoice</DialogTitle>
               <div className="flex items-center gap-4">
-                <Button variant="outline" asChild className="text-primary">
-                  <Link href={"#"} target="_blank" rel="noopener noreferrer">
-                    Buka di tab browser
-                  </Link>
+                <Button
+                  variant="outline"
+                  className="text-primary"
+                  onClick={handleOpenPdf}
+                >
+                  Buka di tab browser
                 </Button>
                 <DialogClose asChild>
                   <Button variant={"outline"}>
@@ -67,9 +76,11 @@ const DetailInvoice = ({ invoice }: IDetailInvoice) => {
             <div className="flex-1 overflow-hidden">
               <PDFViewer className="w-full h-full border-0">
                 <InvoicePDFTemplate
-                  invoiceId={invoice.invoice}
-                  status={invoice.statusInvoice}
-                  customerName={invoice.customer}
+                // invoice={invoice.invoice}
+                // statusInvoice={invoice.statusInvoice}
+                // customer={invoice.customer}
+                // totalAmount={invoice.totalAmount}
+                // createdAt={invoice.createdAt}
                 />
               </PDFViewer>
             </div>
