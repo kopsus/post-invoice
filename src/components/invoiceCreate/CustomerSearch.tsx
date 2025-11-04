@@ -23,7 +23,6 @@ export default function CustomerSearch() {
     fetchData();
   }, []);
 
-  // 🔍 Filter data customer berdasarkan input pencarian
   const filteredCustomers = data.filter((customer) =>
     customer.name.toLowerCase().includes(searchCustomer.toLowerCase())
   );
@@ -43,7 +42,6 @@ export default function CustomerSearch() {
     <Card className="m-6 px-5 py-4 flex flex-col gap-4">
       <p className="body-large-bold">Customer</p>
 
-      {/* === Jika customer sudah dipilih === */}
       {selectedCustomer ? (
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-1">
@@ -71,7 +69,6 @@ export default function CustomerSearch() {
           </div>
         </div>
       ) : (
-        /* === Jika belum pilih customer === */
         <div className="flex items-center gap-2">
           <div className="relative w-full">
             <Input
