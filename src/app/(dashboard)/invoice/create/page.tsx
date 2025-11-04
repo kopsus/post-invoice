@@ -8,20 +8,27 @@ import PageHeader2 from "@/components/layout/PageHeader2";
 import TableServices from "@/components/tables/service";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { getDataServices } from "@/data/services";
+import { TypeServices } from "@/types/services";
 import { PlusCircle } from "lucide-react";
-
-interface Customer {
-  id: number;
-  name: string;
-}
-
-const mockBank: Customer[] = [
-  { id: 1, name: "BCA" },
-  { id: 2, name: "Mandiri" },
-  { id: 3, name: "BRI" },
-];
+import { useEffect, useState } from "react";
 
 const InvoiceCreate = () => {
+  const [data, setData] = useState<TypeServices[]>();
+
+  useEffect(() => {
+    async function fetchData() {
+      const servicesData = await getDataServices();
+      setData(servicesData);
+    }
+    fetchData();
+  }, []);
+
+  const handleDelete = (layanan: string) => {
+    const updatedData = data?.filter((item) => item.layanan !== layanan);
+    setData(updatedData);
+  };
+
   return (
     <div>
       <PageHeader2 title="Buat Invoice" />
@@ -32,7 +39,7 @@ const InvoiceCreate = () => {
       <Card className="m-6 gap-4 items-start">
         <p className="body-large-bold px-5">Layanan</p>
 
-        <TableServices />
+        <TableServices data={data ?? []} handleDelete={handleDelete} />
 
         <Button variant="ghost" className="text-primary mx-3">
           <PlusCircle fill="black" color="white" />
@@ -41,8 +48,8 @@ const InvoiceCreate = () => {
       </Card>
 
       <div className="grid grid-cols-2 items-start gap-5 m-6">
-        <PaymentInfo banks={mockBank} />
-        <InvoiceSummary />
+        <PaymentInfo />
+        <InvoiceSummary data={data ?? []} />
       </div>
 
       <div className="bg-neutral-10 p-6 flex items-center justify-end gap-4">

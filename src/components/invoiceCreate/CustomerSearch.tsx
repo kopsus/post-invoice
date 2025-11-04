@@ -59,7 +59,7 @@ export default function CustomerSearch() {
             <Pen
               size={20}
               className="cursor-pointer hover:text-primary transition-colors"
-              onClick={() => setSelectedCustomer(null)} // kembali ke mode cari
+              onClick={() => setSelectedCustomer(null)}
             />
             <Trash2
               size={20}
@@ -103,7 +103,7 @@ export default function CustomerSearch() {
                       variant="ghost"
                       className="text-primary whitespace-nowrap my-2 border-t"
                     >
-                      <PlusCircle className="mr-1 h-4 w-4" />
+                      <PlusCircle fill="black" color="white" />
                       Tambah customer baru
                     </Button>
                   </div>
@@ -113,7 +113,7 @@ export default function CustomerSearch() {
           </div>
 
           <Button variant="ghost" className="text-primary whitespace-nowrap">
-            <PlusCircle className="mr-1 h-4 w-4" />
+            <PlusCircle fill="black" color="white" />
             Tambah customer baru
           </Button>
         </div>
