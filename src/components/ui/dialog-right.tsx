@@ -89,10 +89,7 @@ function DialogRightFooter({
   return (
     <div
       data-slot="dialog-footer"
-      className={cn(
-        "flex flex-col-reverse gap-2 sm:flex-row absolute bottom-5",
-        className
-      )}
+      className={cn("flex flex-col-reverse gap-2 sm:flex-row", className)}
       {...props}
     />
   );

@@ -12,8 +12,9 @@ import { getDataServices } from "@/data/services";
 import { TypeServices } from "@/types/services";
 import { PlusCircle } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useServiceDialogStore } from "@/services/serviceDialogStore";
+import { useServiceDialogStore } from "@/store/serviceDialogStore";
 import DialogRightService from "@/components/dialog/DialogRightService";
+import DialogRightCustomer from "@/components/dialog/DialogRightCustomer";
 
 const InvoiceCreate = () => {
   const [data, setData] = useState<TypeServices[]>();
@@ -67,7 +68,9 @@ const InvoiceCreate = () => {
         <Button disabled>Simpan</Button>
       </div>
 
+      {/* dialog */}
       <DialogRightService />
+      <DialogRightCustomer />
     </div>
   );
 };

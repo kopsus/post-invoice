@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { PlusCircle, Pen, Trash2 } from "lucide-react";
 import { TypeCustomer } from "@/types/customer";
 import { getDataCustomer } from "@/data/customer";
+import { useCustomerDialogStore } from "@/store/customerDialogStore";
 
 export default function CustomerSearch() {
   const [data, setData] = useState<TypeCustomer[]>([]);
@@ -14,6 +15,7 @@ export default function CustomerSearch() {
   const [selectedCustomer, setSelectedCustomer] = useState<TypeCustomer | null>(
     null
   );
+  const { openCustomerDialog } = useCustomerDialogStore();
 
   useEffect(() => {
     async function fetchData() {
@@ -100,6 +102,7 @@ export default function CustomerSearch() {
                     </div>
 
                     <Button
+                      onClick={openCustomerDialog}
                       variant="ghost"
                       className="text-primary whitespace-nowrap my-2 border-t"
                     >
@@ -112,7 +115,11 @@ export default function CustomerSearch() {
             )}
           </div>
 
-          <Button variant="ghost" className="text-primary whitespace-nowrap">
+          <Button
+            onClick={openCustomerDialog}
+            variant="ghost"
+            className="text-primary whitespace-nowrap"
+          >
             <PlusCircle fill="black" color="white" />
             Tambah customer baru
           </Button>
