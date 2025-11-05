@@ -1,8 +1,14 @@
-import { Button } from "@/components/ui/button";
-import InputLabel from "@/components/ui/inputLabel";
-import Image from "next/image";
+"use client";
 
-const page = () => {
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+
+const LoginPage = () => {
+  const router = useRouter();
+
   return (
     <div className="w-full min-h-screen grid grid-cols-2 items-center justify-center">
       <div className="bg-neutral-10 w-full h-full">
@@ -28,15 +34,18 @@ const page = () => {
             </p>
           </div>
           <div className="flex flex-col gap-4">
-            <InputLabel label="NIPPOS" placeholder="Masukan NIPPOS Anda" />
-            <InputLabel
-              label="Kata Sandi"
-              placeholder="Masukan kata sandi Anda"
-            />
+            <div className="flex flex-col gap-2">
+              <Label>NIPPOS</Label>
+              <Input placeholder="Masukan NIPPOS Anda" />
+            </div>
+            <div className="flex flex-col gap-2">
+              <Label>Kata Sandi</Label>
+              <Input placeholder="Masukan kata sandi Anda" />
+            </div>
           </div>
           <div className="flex flex-col gap-4">
             <p className="body-small-medium">Lupa Kata Sandi</p>
-            <Button>Masuk</Button>
+            <Button onClick={() => router.push("/invoice")}>Masuk</Button>
           </div>
         </div>
       </div>
@@ -54,4 +63,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default LoginPage;

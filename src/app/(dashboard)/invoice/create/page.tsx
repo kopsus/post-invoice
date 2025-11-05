@@ -12,9 +12,14 @@ import { getDataServices } from "@/data/services";
 import { TypeServices } from "@/types/services";
 import { PlusCircle } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useServiceDialogStore } from "@/services/serviceDialogStore";
+import DialogRightService from "@/components/dialog/DialogRightService";
 
 const InvoiceCreate = () => {
   const [data, setData] = useState<TypeServices[]>();
+  const openServiceDialog = useServiceDialogStore(
+    (state) => state.openServiceDialog
+  );
 
   useEffect(() => {
     async function fetchData() {
@@ -41,7 +46,11 @@ const InvoiceCreate = () => {
 
         <TableServices data={data ?? []} handleDelete={handleDelete} />
 
-        <Button variant="ghost" className="text-primary mx-3">
+        <Button
+          onClick={openServiceDialog}
+          variant="ghost"
+          className="text-primary mx-3"
+        >
           <PlusCircle fill="black" color="white" />
           Tambah layanan
         </Button>
@@ -57,6 +66,8 @@ const InvoiceCreate = () => {
         <Button variant={"outline"}>Simpan sebagai draft</Button>
         <Button disabled>Simpan</Button>
       </div>
+
+      <DialogRightService />
     </div>
   );
 };

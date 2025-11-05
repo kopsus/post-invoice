@@ -11,13 +11,8 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Pen, PlusCircle, Trash2 } from "lucide-react";
 import { TypeServices } from "@/types/services";
-import { useState } from "react";
-import {
-  DialogRight,
-  DialogRightContent,
-  DialogRightHeader,
-  DialogRightTitle,
-} from "@/components/ui/dialog-right";
+import DialogRightService from "@/components/dialog/DialogRightService";
+import { useServiceDialogStore } from "@/services/serviceDialogStore";
 
 interface ITableServices {
   handleDelete: (layanan: string) => void;
@@ -25,7 +20,9 @@ interface ITableServices {
 }
 
 const TableServices = ({ handleDelete, data }: ITableServices) => {
-  const [openDialog, setOpenDialog] = useState(false);
+  const openServiceDialog = useServiceDialogStore(
+    (state) => state.openServiceDialog
+  );
 
   return (
     <>
@@ -84,7 +81,7 @@ const TableServices = ({ handleDelete, data }: ITableServices) => {
                   <p className="body-small-medium">
                     Tambahkan layanan ke dalam list
                   </p>
-                  <Button variant={"ghost"} onClick={() => setOpenDialog(true)}>
+                  <Button variant={"ghost"} onClick={openServiceDialog}>
                     <PlusCircle fill="black" color="white" />
                     Tambah Layanan
                   </Button>
@@ -94,21 +91,8 @@ const TableServices = ({ handleDelete, data }: ITableServices) => {
           )}
         </TableBody>
       </Table>
-      <DialogRight open={openDialog} onOpenChange={setOpenDialog}>
-        <DialogRightContent className="max-w-lg">
-          <DialogRightHeader>
-            <DialogRightTitle>Tambah Layanan</DialogRightTitle>
-          </DialogRightHeader>
 
-          {/* 👉 Isi form tambah layanan di sini */}
-          <div className="mt-4 space-y-3">
-            <p>
-              Form isi layanan di sini (misalnya input nama, harga, diskon,
-              dst).
-            </p>
-          </div>
-        </DialogRightContent>
-      </DialogRight>
+      <DialogRightService />
     </>
   );
 };
