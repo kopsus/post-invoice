@@ -1,6 +1,7 @@
 "use client";
 
 import DialogAcceptInvoice from "@/components/dialog/DialogAcceptInvoice";
+import DialogSendEmail from "@/components/dialog/DialogSendEmail";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -89,6 +90,7 @@ export const columnsInvoice: ColumnDef<TypeInvoice>[] = [
                 Lihat PDF
               </DropdownMenuItem>
               <DialogAcceptInvoice />
+              <DialogSendEmail />
               <DropdownMenuItem>
                 <Pen />
                 Ubah
