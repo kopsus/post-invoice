@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 import { PlusCircle, Pen, Trash2 } from "lucide-react";
 import { TypeCustomer } from "@/types/customer";
 import { getDataCustomer } from "@/data/customer";
-import { useCustomerDialogStore } from "@/store/customerDialogStore";
+import { useCustomerDialogStore } from "@/stores/customerDialogStore";
 
 export default function CustomerSearch() {
   const [data, setData] = useState<TypeCustomer[]>([]);

@@ -12,7 +12,7 @@ import { getDataServices } from "@/data/services";
 import { TypeServices } from "@/types/services";
 import { PlusCircle } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useServiceDialogStore } from "@/store/serviceDialogStore";
+import { useServiceDialogStore } from "@/stores/serviceDialogStore";
 import DialogRightService from "@/components/dialog/DialogRightService";
 import DialogRightCustomer from "@/components/dialog/DialogRightCustomer";
 

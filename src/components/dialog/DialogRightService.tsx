@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "../ui/button";
 import { XIcon } from "lucide-react";
-import { useServiceDialogStore } from "@/store/serviceDialogStore";
+import { useServiceDialogStore } from "@/stores/serviceDialogStore";
 
 const DialogRightService = () => {
   const { isServiceDialogOpen, closeServiceDialog } = useServiceDialogStore();

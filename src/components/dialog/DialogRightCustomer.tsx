@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "../ui/button";
 import { XIcon } from "lucide-react";
-import { useCustomerDialogStore } from "@/store/customerDialogStore";
+import { useCustomerDialogStore } from "@/stores/customerDialogStore";
 import { Textarea } from "../ui/textarea";
 
 const DialogRightCustomer = () => {

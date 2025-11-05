@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Pen, PlusCircle, Trash2 } from "lucide-react";
 import { TypeServices } from "@/types/services";
 import DialogRightService from "@/components/dialog/DialogRightService";
-import { useServiceDialogStore } from "@/store/serviceDialogStore";
+import { useServiceDialogStore } from "@/stores/serviceDialogStore";
 
 interface ITableServices {
   handleDelete: (layanan: string) => void;
